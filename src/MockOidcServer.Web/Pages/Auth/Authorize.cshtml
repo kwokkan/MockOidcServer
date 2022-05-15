@@ -1,0 +1,15 @@
+﻿@page
+@model MockOidcServer.Web.Pages.Auth.AuthorizeModel
+@{
+    var title = "Authorize";
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+@Html.TextBoxFor(x => x.ResponseType)
+@Html.TextBoxFor(x => x.ClientId)
+@Html.TextBoxFor(x => x.Scope)
+@Html.TextBoxFor(x => x.RedirectUri)
+@Html.TextBoxFor(x => x.State)
+@Html.TextBoxFor(x => x.Nonce)
