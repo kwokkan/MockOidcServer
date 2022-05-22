@@ -7,9 +7,61 @@
 
 <h1>@title</h1>
 
-@Html.TextBoxFor(x => x.ResponseType)
-@Html.TextBoxFor(x => x.ClientId)
-@Html.TextBoxFor(x => x.Scope)
-@Html.TextBoxFor(x => x.RedirectUri)
-@Html.TextBoxFor(x => x.State)
-@Html.TextBoxFor(x => x.Nonce)
+<form method="post">
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.TextBoxFor(x => x.Password)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.ResponseType)
+        @Html.TextBoxFor(x => x.ResponseType)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.ClientId)
+        @Html.TextBoxFor(x => x.ClientId)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Scope)
+        @Html.TextBoxFor(x => x.Scope)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.RedirectUri)
+        @Html.TextBoxFor(x => x.RedirectUri)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.State)
+        @Html.TextBoxFor(x => x.State)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Nonce)
+        @Html.TextBoxFor(x => x.Nonce)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.SigningKey)
+        @Html.TextBoxFor(x => x.SigningKey)
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<div>
+    @Html.LabelFor(x => x.Jwt)
+    <pre>@Model.Jwt</pre>
+</div>
+
+<div>
+    @Html.LabelFor(x => x.ReturnUrl)
+    <pre>@Model.ReturnUrl</pre>
+</div>
