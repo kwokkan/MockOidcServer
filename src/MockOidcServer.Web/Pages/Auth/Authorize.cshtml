@@ -1,0 +1,67 @@
+﻿@page
+@model MockOidcServer.Web.Pages.Auth.AuthorizeModel
+@{
+    var title = "Authorize";
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+<form method="post" asp-page="Authorize">
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.TextBoxFor(x => x.Password)
+    </div>
+
+    <div>
+        @Html.LabelForBindProperty(x => x.ResponseType)
+        @Html.TextBoxForBindProperty(x => x.ResponseType)
+    </div>
+
+    <div>
+        @Html.LabelForBindProperty(x => x.ClientId)
+        @Html.TextBoxForBindProperty(x => x.ClientId)
+    </div>
+
+    <div>
+        @Html.LabelForBindProperty(x => x.Scope)
+        @Html.TextBoxForBindProperty(x => x.Scope)
+    </div>
+
+    <div>
+        @Html.LabelForBindProperty(x => x.RedirectUri)
+        @Html.TextBoxForBindProperty(x => x.RedirectUri)
+    </div>
+
+    <div>
+        @Html.LabelForBindProperty(x => x.State)
+        @Html.TextBoxForBindProperty(x => x.State)
+    </div>
+
+    <div>
+        @Html.LabelForBindProperty(x => x.Nonce)
+        @Html.TextBoxForBindProperty(x => x.Nonce)
+    </div>
+
+    @*<div>
+        @Html.LabelForBindProperty(x => x.SigningKey)
+        @Html.TextBoxForBindProperty(x => x.SigningKey)
+    </div>*@
+
+    <button type="submit">Login</button>
+</form>
+
+<div>
+    @Html.LabelFor(x => x.Jwt)
+    <pre>@Model.Jwt</pre>
+</div>
+
+<div>
+    @Html.LabelFor(x => x.ReturnUrl)
+    <pre>@Model.ReturnUrl</pre>
+</div>
