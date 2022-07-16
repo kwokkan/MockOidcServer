@@ -7,7 +7,7 @@
 
 <h1>@title</h1>
 
-<form method="post">
+<form method="post" asp-page="Authorize">
     <div>
         @Html.LabelFor(x => x.Username)
         @Html.TextBoxFor(x => x.Username)
@@ -19,39 +19,39 @@
     </div>
 
     <div>
-        @Html.LabelFor(x => x.ResponseType)
-        @Html.TextBoxFor(x => x.ResponseType)
+        @Html.LabelForBindProperty(x => x.ResponseType)
+        @Html.TextBoxForBindProperty(x => x.ResponseType)
     </div>
 
     <div>
-        @Html.LabelFor(x => x.ClientId)
-        @Html.TextBoxFor(x => x.ClientId)
+        @Html.LabelForBindProperty(x => x.ClientId)
+        @Html.TextBoxForBindProperty(x => x.ClientId)
     </div>
 
     <div>
-        @Html.LabelFor(x => x.Scope)
-        @Html.TextBoxFor(x => x.Scope)
+        @Html.LabelForBindProperty(x => x.Scope)
+        @Html.TextBoxForBindProperty(x => x.Scope)
     </div>
 
     <div>
-        @Html.LabelFor(x => x.RedirectUri)
-        @Html.TextBoxFor(x => x.RedirectUri)
+        @Html.LabelForBindProperty(x => x.RedirectUri)
+        @Html.TextBoxForBindProperty(x => x.RedirectUri)
     </div>
 
     <div>
-        @Html.LabelFor(x => x.State)
-        @Html.TextBoxFor(x => x.State)
+        @Html.LabelForBindProperty(x => x.State)
+        @Html.TextBoxForBindProperty(x => x.State)
     </div>
 
     <div>
-        @Html.LabelFor(x => x.Nonce)
-        @Html.TextBoxFor(x => x.Nonce)
+        @Html.LabelForBindProperty(x => x.Nonce)
+        @Html.TextBoxForBindProperty(x => x.Nonce)
     </div>
 
-    <div>
-        @Html.LabelFor(x => x.SigningKey)
-        @Html.TextBoxFor(x => x.SigningKey)
-    </div>
+    @*<div>
+        @Html.LabelForBindProperty(x => x.SigningKey)
+        @Html.TextBoxForBindProperty(x => x.SigningKey)
+    </div>*@
 
     <button type="submit">Login</button>
 </form>
