@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
 using MockOidcServer.Web.Models;
 
@@ -11,6 +12,17 @@ namespace MockOidcServer.Web.Pages.Auth
 {
     public class AuthorizeModel : PageModel
     {
+        public IEnumerable<SelectListItem> ErrorSelectListItems { get; set; } = new List<SelectListItem>
+        {
+            new SelectListItem("access_denied", "access_denied", true),
+            new SelectListItem("invalid_request", "invalid_request"),
+            new SelectListItem("invalid_scope", "invalid_scope"),
+            new SelectListItem("server_error", "server_error"),
+            new SelectListItem("temporarily_unavailable", "temporarily_unavailable"),
+            new SelectListItem("unauthorized_client", "unauthorized_client"),
+            new SelectListItem("unsupported_response_type", "unsupported_response_type"),
+        };
+
         [BindProperty(Name = "response_type", SupportsGet = true)]
         [DisplayName("response_type")]
         public string ResponseType { get; set; } = default!;
@@ -45,6 +57,21 @@ namespace MockOidcServer.Web.Pages.Auth
         [DisplayName("signing_key")]
         public string? SigningKey { get; set; }
 
+        [BindProperty(Name = "error", SupportsGet = true)]
+        [DisplayName("error")]
+        public string? Error { get; set; }
+
+        [BindProperty(Name = "error_description", SupportsGet = true)]
+        [DisplayName("error_description")]
+        public string? ErrorDescription { get; set; }
+
+        [BindProperty(Name = "error_uri", SupportsGet = true)]
+        [DisplayName("error_uri")]
+        public string? ErrorUri { get; set; }
+
+        [BindProperty]
+        public string? Action { get; set; }
+
         public string? Jwt { get; set; }
 
         public string? ReturnUrl { get; set; }
@@ -56,9 +83,24 @@ namespace MockOidcServer.Web.Pages.Auth
 
         public IActionResult OnPost()
         {
-            Populate();
+            switch (Action)
+            {
+                case "login":
+                    {
+                        Populate();
 
-            return Redirect(ReturnUrl!);
+                        return Redirect(ReturnUrl!);
+
+                    }
+                case "cancel":
+                    {
+                        PopulateForCancel();
+
+                        return Redirect(ReturnUrl!);
+                    }
+                default:
+                    return Page();
+            }
         }
 
         private void Populate()
@@ -74,6 +116,21 @@ namespace MockOidcServer.Web.Pages.Auth
                 { "id_token", jwt },
                 { "state", State },
                 //{ "expires_in", sub },
+            };
+
+            var encodedParams = string.Join("&", returnParams.Select(x => x.Key + "=" + HttpUtility.UrlEncode(x.Value)));
+
+            ReturnUrl = $"{RedirectUri}#{encodedParams}";
+        }
+
+        private void PopulateForCancel()
+        {
+            var returnParams = new Dictionary<string, string?>
+            {
+                { "error", Error },
+                { "error_description", ErrorDescription },
+                { "error_uri", ErrorUri },
+                { "state", State },
             };
 
             var encodedParams = string.Join("&", returnParams.Select(x => x.Key + "=" + HttpUtility.UrlEncode(x.Value)));

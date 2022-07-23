@@ -53,7 +53,27 @@
         @Html.TextBoxForBindProperty(x => x.SigningKey)
     </div>*@
 
-    <button type="submit">Login</button>
+    <fieldset>
+        <legend>Error parameters</legend>
+
+        <div>
+            @Html.LabelForBindProperty(x => x.Error)
+            @Html.DropDownListForBindProperty(x  => x.Error, Model.ErrorSelectListItems)
+        </div>
+
+        <div>
+            @Html.LabelForBindProperty(x => x.ErrorDescription)
+            @Html.TextBoxForBindProperty(x => x.ErrorDescription)
+        </div>
+
+        <div>
+            @Html.LabelForBindProperty(x => x.ErrorUri)
+            @Html.TextBoxForBindProperty(x => x.ErrorUri)
+        </div>
+    </fieldset>
+
+    <button type="submit" name="action" value="cancel" class="btn btn-danger">Deny</button>
+    <button type="submit" name="action" value="login" class="btn btn-success">Login</button>
 </form>
 
 <div>
