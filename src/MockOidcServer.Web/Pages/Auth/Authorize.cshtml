@@ -1,0 +1,102 @@
+﻿@page
+@model MockOidcServer.Web.Pages.Auth.AuthorizeModel
+@{
+    var title = "Authorize";
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+<form method="post" asp-page="Authorize">
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.TextBoxFor(x => x.Password)
+    </div>
+
+    <details>
+        <summary>Options</summary>
+
+        <details>
+            <summary>Login Parameters</summary>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.ResponseType)
+                @Html.TextBoxForBindProperty(x => x.ResponseType)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.ClientId)
+                @Html.TextBoxForBindProperty(x => x.ClientId)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.Scope)
+                @Html.TextBoxForBindProperty(x => x.Scope)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.Nonce)
+                @Html.TextBoxForBindProperty(x => x.Nonce)
+            </div>
+
+            @*<div>
+            @Html.LabelForBindProperty(x => x.SigningKey)
+            @Html.TextBoxForBindProperty(x => x.SigningKey)
+            </div>*@
+        </details>
+
+        <details>
+            <summary>Common parameters</summary>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.RedirectUri)
+                @Html.TextBoxForBindProperty(x => x.RedirectUri)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.State)
+                @Html.TextBoxForBindProperty(x => x.State)
+            </div>
+        </details>
+
+        <details>
+            <summary>Cancel Parameters</summary>
+            <div>
+                @Html.LabelForBindProperty(x => x.Error)
+                @Html.DropDownListForBindProperty(x  => x.Error, Model.ErrorSelectListItems)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.ErrorDescription)
+                @Html.TextBoxForBindProperty(x => x.ErrorDescription)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.ErrorUri)
+                @Html.TextBoxForBindProperty(x => x.ErrorUri)
+            </div>
+        </details>
+
+        <details>
+            <summary>Debug</summary>
+
+            <div>
+                @Html.LabelFor(x => x.Jwt)
+                <pre>@Model.Jwt</pre>
+            </div>
+
+            <div>
+                @Html.LabelFor(x => x.ReturnUrl)
+                <pre>@Model.ReturnUrl</pre>
+            </div>
+        </details>
+    </details>
+
+    <button type="submit" name="action" value="cancel" class="btn btn-danger">Deny</button>
+    <button type="submit" name="action" value="login" class="btn btn-success">Login</button>
+</form>
