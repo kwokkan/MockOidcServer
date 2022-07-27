@@ -48,8 +48,35 @@ pre {
     overflow: auto;
 }
 
+.alert {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.alert-info {
+    border-color: #bfb8ff;
+    background-color: #dbebff;
+    color: #33f;
+}
+
+.btn-danger {
+    background-color: #df0808;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #1d9700;
+    color: #fff;
+}
+
 .border-top {
     border-top: 1px solid #ccc;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
 }
 
 .pb-3 {

@@ -7,6 +7,12 @@
 
 <h1>@title</h1>
 
+<div class="alert alert-info mb-3" role="alert">
+    <p>
+        Parameters can be modified before allowing/denying the request.
+    </p>
+</div>
+
 <form method="post" class="spacing" asp-page="Authorize">
     <div>
         @Html.LabelFor(x => x.Username)
