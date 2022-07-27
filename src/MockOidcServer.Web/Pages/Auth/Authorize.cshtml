@@ -9,7 +9,7 @@
 
 <div class="alert alert-info mb-3" role="alert">
     <p>
-        Parameters can be modified before allowing/denying the request.
+        Parameters can be modified before logging in/denying the request.
     </p>
 </div>
 
@@ -25,7 +25,7 @@
     </div>
 
     <div>
-        <button type="submit" name="action" value="cancel" class="btn btn-danger">Deny</button>
+        <button type="submit" name="action" value="deny" class="btn btn-danger">Deny</button>
         <button type="submit" name="action" value="login" class="btn btn-success">Login</button>
     </div>
 
@@ -76,7 +76,7 @@
         </details>
 
         <details class="spacing">
-            <summary>Cancel Parameters</summary>
+            <summary>Deny Parameters</summary>
 
             <div>
                 @Html.LabelForBindProperty(x => x.Error)
