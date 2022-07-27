@@ -97,9 +97,10 @@ public static class HtmlHelperExtensions
         var id = bindProperty.Name ?? memberExpression.Member.Name;
         var value = htmlHelper.ValueFor(expression);
 
-        tagBuilder.MergeAttribute("id", id);
-        tagBuilder.MergeAttribute("name", id);
-        tagBuilder.MergeAttribute("value", value);
+        tagBuilder.Attributes.Add("id", id);
+        tagBuilder.Attributes.Add("name", id);
+        tagBuilder.Attributes.Add("value", value);
+        tagBuilder.Attributes.Add("type", "text");
 
         return tagBuilder;
     }

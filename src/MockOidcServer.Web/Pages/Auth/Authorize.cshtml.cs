@@ -92,7 +92,7 @@ namespace MockOidcServer.Web.Pages.Auth
                         return Redirect(ReturnUrl!);
 
                     }
-                case "cancel":
+                case "deny":
                     {
                         PopulateForCancel();
 

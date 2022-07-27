@@ -1,18 +1,89 @@
-html {
-  font-size: 14px;
-}
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+* {
+    box-sizing: border-box;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    font-family: system-ui, sans-serif;
 }
 
-body {
-  margin-bottom: 60px;
+input[type=text] {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+select {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+button {
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+main, .footer {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 768px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.footer {
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+form input, form select {
+    width: 100%;
+}
+
+pre {
+    overflow: auto;
+}
+
+.alert {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.alert-info {
+    border-color: #bfb8ff;
+    background-color: #dbebff;
+    color: #33f;
+}
+
+.btn-danger {
+    background-color: #df0808;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #1d9700;
+    color: #fff;
+}
+
+.border-top {
+    border-top: 1px solid #ccc;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.pb-3 {
+    padding-bottom: 1rem;
+}
+
+.spacing > * {
+    margin-bottom: 1rem;
 }
