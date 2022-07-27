@@ -52,6 +52,10 @@ pre {
     border-top: 1px solid #ccc;
 }
 
+.pb-3 {
+    padding-bottom: 1rem;
+}
+
 .spacing > * {
     margin-bottom: 1rem;
 }
