@@ -7,7 +7,7 @@
 
 <h1>@title</h1>
 
-<form method="post" asp-page="Authorize">
+<form method="post" class="spacing" asp-page="Authorize">
     <div>
         @Html.LabelFor(x => x.Username)
         @Html.TextBoxFor(x => x.Username)
@@ -18,10 +18,15 @@
         @Html.TextBoxFor(x => x.Password)
     </div>
 
-    <details>
+    <div>
+        <button type="submit" name="action" value="cancel" class="btn btn-danger">Deny</button>
+        <button type="submit" name="action" value="login" class="btn btn-success">Login</button>
+    </div>
+
+    <details class="spacing">
         <summary>Options</summary>
 
-        <details>
+        <details class="spacing">
             <summary>Login Parameters</summary>
 
             <div>
@@ -50,7 +55,7 @@
             </div>*@
         </details>
 
-        <details>
+        <details class="spacing">
             <summary>Common parameters</summary>
 
             <div>
@@ -64,8 +69,9 @@
             </div>
         </details>
 
-        <details>
+        <details class="spacing">
             <summary>Cancel Parameters</summary>
+
             <div>
                 @Html.LabelForBindProperty(x => x.Error)
                 @Html.DropDownListForBindProperty(x  => x.Error, Model.ErrorSelectListItems)
@@ -82,7 +88,7 @@
             </div>
         </details>
 
-        <details>
+        <details class="spacing">
             <summary>Debug</summary>
 
             <div>
@@ -96,7 +102,4 @@
             </div>
         </details>
     </details>
-
-    <button type="submit" name="action" value="cancel" class="btn btn-danger">Deny</button>
-    <button type="submit" name="action" value="login" class="btn btn-success">Login</button>
 </form>

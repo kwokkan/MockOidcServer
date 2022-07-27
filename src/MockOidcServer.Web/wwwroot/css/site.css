@@ -1,4 +1,4 @@
-html {
+/*html {
   font-size: 14px;
 }
 
@@ -15,4 +15,55 @@ html {
 
 body {
   margin-bottom: 60px;
+}*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: system-ui, sans-serif;
+}
+
+input[type=text] {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+select {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+button {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+main, .footer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+
+.footer {
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+form input, form select {
+    width: 100%;
+}
+
+pre {
+    overflow: auto;
+}
+
+.spacing > * {
+    margin-bottom: 1rem;
 }
