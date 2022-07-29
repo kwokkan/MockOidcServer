@@ -55,10 +55,15 @@
                 @Html.TextBoxForBindProperty(x => x.Nonce)
             </div>
 
-            @*<div>
-            @Html.LabelForBindProperty(x => x.SigningKey)
-            @Html.TextBoxForBindProperty(x => x.SigningKey)
-            </div>*@
+            <div>
+                @Html.LabelForBindProperty(x => x.Issuer)
+                @Html.TextBoxForBindProperty(x => x.Issuer)
+            </div>
+
+            <div>
+                @Html.LabelForBindProperty(x => x.SigningKey)
+                @Html.TextBoxForBindProperty(x => x.SigningKey)
+            </div>
         </details>
 
         <details class="spacing">

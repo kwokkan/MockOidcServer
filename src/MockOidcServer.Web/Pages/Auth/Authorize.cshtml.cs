@@ -53,6 +53,10 @@ namespace MockOidcServer.Web.Pages.Auth
         [BindProperty(Name = "password", SupportsGet = true)]
         public string? Password { get; set; }
 
+        [BindProperty(Name = "issuer", SupportsGet = true)]
+        [DisplayName("issuer")]
+        public string? Issuer { get; set; }
+
         [BindProperty(Name = "signing_key", SupportsGet = true)]
         [DisplayName("signing_key")]
         public string? SigningKey { get; set; }
@@ -78,6 +82,8 @@ namespace MockOidcServer.Web.Pages.Auth
 
         public void OnGet()
         {
+            Issuer = GetIssuer(Request);
+
             Populate();
         }
 
@@ -106,14 +112,13 @@ namespace MockOidcServer.Web.Pages.Auth
         private void Populate()
         {
             var sub = GenerateSub();
-            var jwt = GenerateJwt(sub);
+            Jwt = GenerateJwt(sub);
 
-            Jwt = jwt;
             var returnParams = new Dictionary<string, string?>
             {
                 { "access_token", sub },
                 { "token_type", "Bearer" },
-                { "id_token", jwt },
+                { "id_token", Jwt },
                 { "state", State },
                 //{ "expires_in", sub },
             };
@@ -140,8 +145,6 @@ namespace MockOidcServer.Web.Pages.Auth
 
         private string GenerateJwt(string sub)
         {
-            var myIssuer = "http://mysite.com";
-            var myAudience = "http://myaudience.com";
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -149,14 +152,14 @@ namespace MockOidcServer.Web.Pages.Auth
                     new Claim("sub", sub),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                Issuer = myIssuer,
-                Audience = myAudience,
+                Issuer = Issuer,
+                Audience = ClientId,
             };
 
             if (SigningKey != null)
             {
-                //var securityKey = new SymmetricSecurityKey(SigningKey.ToByteArray());
-                //tokenDescriptor.SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+                var securityKey = new SymmetricSecurityKey(SigningKey.PadRight(16).ToByteArray());
+                tokenDescriptor.SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -173,6 +176,11 @@ namespace MockOidcServer.Web.Pages.Auth
             }.ToJson();
 
             return Convert.ToBase64String(subJson.ToByteArray()!);
+        }
+
+        private static string GetIssuer(HttpRequest request)
+        {
+            return $"{request.Scheme}://{request.Host.Value}";
         }
     }
 }
